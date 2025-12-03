@@ -10,14 +10,18 @@ import ReactFlow, {
   addEdge,
   Connection,
   Edge,
-  ReactFlowProvider,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 import { Box } from '@mui/material'
+import ResistorNode from '@/components/Nodes/ResistorNode'
+
+const nodeTypes = {
+  resistor: ResistorNode,
+}
 
 const initialNodes = [
   { id: '1', position: { x: 100, y: 100 }, data: { label: 'Battery' } },
-  { id: '2', position: { x: 300, y: 100 }, data: { label: 'Resistor' } },
+  { id: '2', position: { x: 300, y: 100 }, type: 'resistor', data: { resistance: 100 } },
 ]
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }]
 
@@ -34,7 +38,8 @@ export default function EditorCanvas() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}>
+        onConnect={onConnect}
+        nodeTypes={nodeTypes}>
         <Controls />
         <MiniMap />
         <Background gap={12} size={1} />
