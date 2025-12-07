@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Box, Typography, List, ListItem, ListItemText, Paper } from '@mui/material'
 
